@@ -1,0 +1,33 @@
+# Build APK udrone secara otomatis di GitHub (Android SDK sudah tersedia di runner).
+# Hasil: tab Actions -> run terbaru -> Artifacts -> udrone-apk
+name: Build APK udrone
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run test:physics
+      - run: npm run build
+      - run: npx cap sync android
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Build APK (debug, siap dipasang)
+        working-directory: android
+        run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
+      - run: cp android/app/build/outputs/apk/debug/app-debug.apk udrone.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: udrone-apk
+          path: udrone.apk

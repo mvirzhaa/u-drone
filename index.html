@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <title>udrone — Simulator Drone FPV</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="analog" class="hidden"></div>
+    <canvas id="sticks"></canvas>
+
+    <div id="osd">
+      <div id="osd-tl"></div>
+      <div id="osd-tr"></div>
+      <div id="osd-bl"></div>
+      <div id="osd-br"></div>
+      <div id="osd-race"></div>
+      <div id="osd-msg"></div>
+      <div id="crosshair">┼</div>
+      <div id="gate-marker"><span class="arrow">▲</span><span class="dist"></span></div>
+    </div>
+
+    <div id="hudbtns">
+      <button id="btn-menu" aria-label="Menu">☰</button>
+      <button id="btn-arm">ARM</button>
+      <button id="btn-reset">RESET</button>
+      <button id="btn-view" aria-label="Ganti kamera">CAM</button>
+    </div>
+
+    <div id="rotate-hint">Putar ponsel ke posisi mendatar (landscape) ↻</div>
+
+    <div id="menu">
+      <div class="menu-head">
+        <div class="logo">u<span>drone</span></div>
+        <nav id="tabs"></nav>
+        <button id="btn-fly" class="primary">TERBANG ▶</button>
+      </div>
+      <div id="panels"></div>
+    </div>
+
+    <div id="modal" class="hidden"><div class="box"><div id="modal-body"></div></div></div>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

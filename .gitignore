@@ -1,0 +1,12 @@
+node_modules/
+dist/
+dist-single/
+android/app/build/
+android/build/
+android/.gradle/
+android/app/src/main/assets/public/
+android/local.properties
+android/udrone/
+.DS_Store
+Thumbs.db
+
