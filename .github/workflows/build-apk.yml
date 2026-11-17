@@ -23,11 +23,16 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - name: Build APK (debug, siap dipasang)
+      - name: Build APK (Release Modern ARM64)
         working-directory: android
-        run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
-      - run: cp android/app/build/outputs/apk/debug/app-debug.apk udrone.apk
+        run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon
+      - name: Prepare APK Output
+        run: |
+          cp android/app/build/outputs/apk/release/app-release.apk udrone-release-arm64.apk
+          cp android/app/build/outputs/apk/release/app-release.apk udrone.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: udrone-apk
-          path: udrone.apk
+          name: udrone-release-arm64
+          path: |
+            udrone-release-arm64.apk
+            udrone.apk
