@@ -27,12 +27,8 @@ jobs:
         working-directory: android
         run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon
       - name: Prepare APK Output
-        run: |
-          cp android/app/build/outputs/apk/release/app-release.apk udrone-release-arm64.apk
-          cp android/app/build/outputs/apk/release/app-release.apk udrone.apk
+        run: cp android/app/build/outputs/apk/release/app-release.apk udrone-release-arm64.apk
       - uses: actions/upload-artifact@v4
         with:
           name: udrone-release-arm64
-          path: |
-            udrone-release-arm64.apk
-            udrone.apk
+          path: udrone-release-arm64.apk
